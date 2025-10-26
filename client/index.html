@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socket Air Hockey</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: 'Inter', system-ui, sans-serif;
+      }
+      body {
+        margin: 0;
+        background: radial-gradient(circle at top, #1a1a2e, #060608);
+        color: #f0f3ff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      #app {
+        width: 100%;
+        max-width: 960px;
+        padding: 24px;
+        box-sizing: border-box;
+      }
+      canvas {
+        width: 100%;
+        height: auto;
+        border-radius: 18px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+        display: block;
+        background: transparent;
+      }
+      .notice {
+        margin-top: 16px;
+        text-align: center;
+        font-size: 0.9rem;
+        color: rgba(240, 243, 255, 0.75);
+      }
+      a {
+        color: #58b4ff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="game" width="960" height="540"></canvas>
+      <div class="notice" id="info">Share this link with a buddy so they can jump in.</div>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
