@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Air Hockey - Online Multiplayer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    #scoreboard {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 15px 40px;
+      font-size: 32px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .score {
+      min-width: 40px;
+      text-align: center;
+    }
+
+    .player1-score {
+      color: #4facfe;
+      text-shadow: 0 0 20px rgba(79, 172, 254, 0.8);
+    }
+
+    .player2-score {
+      color: #f093fb;
+      text-shadow: 0 0 20px rgba(240, 147, 251, 0.8);
+    }
+
+    .divider {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    #gameCanvas {
+      border-radius: 10px;
+      box-shadow:
+        0 0 60px rgba(79, 172, 254, 0.3),
+        0 0 100px rgba(240, 147, 251, 0.2);
+      cursor: none;
+      background: #0d1117;
+    }
+
+    #status {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.8);
+      padding: 30px 50px;
+      border-radius: 15px;
+      font-size: 24px;
+      text-align: center;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    #status.show {
+      opacity: 1;
+    }
+
+    #controls {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 15px 25px;
+      border-radius: 10px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center;
+      max-width: 800px;
+    }
+
+    .control-group {
+      display: inline-block;
+      margin: 0 20px;
+    }
+
+    .key {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin: 0 2px;
+      font-family: monospace;
+      font-weight: bold;
+    }
+
+    .player1-key { color: #4facfe; }
+    .player2-key { color: #f093fb; }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .pulse {
+      animation: pulse 0.5s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="scoreboard">
+      <span class="score player1-score" id="score1">0</span>
+      <span class="divider">:</span>
+      <span class="score player2-score" id="score2">0</span>
+    </div>
+
+    <div style="position: relative;">
+      <canvas id="gameCanvas" width="800" height="400"></canvas>
+      <div id="status"></div>
+    </div>
+
+    <div id="controls">
+      <div class="control-group">
+        <strong>Player 1 (Blue):</strong>
+        <span class="key player1-key">W</span>
+        <span class="key player1-key">A</span>
+        <span class="key player1-key">S</span>
+        <span class="key player1-key">D</span>
+      </div>
+      <div class="control-group">
+        <strong>Player 2 (Pink):</strong>
+        <span class="key player2-key">↑</span>
+        <span class="key player2-key">←</span>
+        <span class="key player2-key">↓</span>
+        <span class="key player2-key">→</span>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
